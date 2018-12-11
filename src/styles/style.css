@@ -128,7 +128,7 @@ h2 {font-weight: 300;margin: 0;font-size: 2rem;}
 .sidebar ul{ margin:0px; padding:0px; list-style:none; }
 .sidebar ul li{ margin:0px; padding:0px; width:100%;}
 .sidebar ul li a{    color: #393838; text-decoration: none; font-size: 14px;  line-height: 30px;  font-weight: bold;}
-.sidebar ul li a:hover { color: #bd121d; text-decoration: none;}
+.sidebar ul li a:hover { color: #db4437; text-decoration: none;}
 .mainbar{ margin:0px; padding:0px; float:left; width:80%;}
 .fullwidth{float: left;  width: 100%; margin: 0px; padding: 0px;}
 
@@ -154,8 +154,9 @@ min-height: 18px !important; margin-right: 10px !important; width: auto !importa
 .containerRadio input:checked ~ .checkmark:after {display: block;}
 /* Style the indicator (dot/circle) */
 .containerRadio .checkmark:after { top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; background: rgba(0,0,0,0.2); border: 2px solid #ddd;}
+.containerRadio span:after { top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; background: rgba(0,0,0,0.2); border: 2px solid #ddd;}
 .variant_txt > div{    display: flex;    overflow-y: scroll;    overflow: hidden;}
-
+.containerRadio input{ display:none;}
 .varient_txt_box{ float:left; margin:0px; padding:0px; width:100%;}
  
 /* BASE APP
@@ -317,9 +318,13 @@ footer.Cart__footer {background: #f2f2f2;display: table;width: 100%;padding: 0px
 .Cart__footer{ padding:0px;}
 .menu-content li .fa-plus{float: right;font-size: 12px;color: #b5b5b4;margin: 10px 0 0;}
 .sub-menu  {   left: 0px!important;    margin: 0 0 0 25px;    padding: 0px;}
-.menu-content a:hover{ color:#bd121d; text-decoration:none;	}
-.menu-content a{ font-family: 'Brandon Grotesque'; color:#393838; text-decoration:none; font-size:16px; margin:0px; padding:10px 0; display:inline-block; line-height:20px; font-weight:bold;}
+.menu-content  a.current{ color:#db4437; text-decoration:none;	}
+.menu-content a:hover{ color:#db4437; text-decoration:none;	}
+.menu-content a{ font-family: 'Brandon Grotesque'; color:#393838; text-decoration:none; font-size:16px; margin:0px; padding:5px 0; display:inline-block; line-height:30px; font-weight:bold;}
+.menu-page-content a{ width:100%; font-family: 'Brandon Grotesque'; color:#393838; text-decoration:none; font-size:16px; margin:0px; padding:5px 0; display:inline-block; line-height:30px; font-weight:500;}
+.menu-page-content a:hover {    color: #db4437;    text-decoration: none;}
 .menu-content li{    cursor: pointer;    float: left;    margin: 0px;    padding: 0px; width:100%;}
+.menu-page-content li{    cursor: pointer;    float: left;    margin: 0px;    padding: 0px; width:100%;}
 .menu-list{width: 100%; background: rgba(255,255,255,0.4); float: left;     transform: translate3d(0%, 0px, 0px); height: 100%; position: fixed; z-index: 99;  	top: 0; left: 0; right:0;}
 .show .menu-content,.show .menu-content a {
 -webkit-transform: translate3d(0,0,0);
@@ -329,13 +334,12 @@ transition: transform 0.8s;
 -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 }
-.menu-content, .menu-content a {
--webkit-transition: -webkit-transform 0s 0.4s;
-transition: transform 0s 0.4s;
--webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-}
-.cruncy_option{ position:absolute; bottom:15px;}
+.menu-content a svg{ float:right; display:none;}
+.menu-content a span{ float:left;}
+.menu-content  a.current  svg{display:block; opacity:0.4;}
+.menu-content  a:hover  svg{display:block; opacity:0.4;}
+.menu-content, .menu-content a {    width: 100%;-webkit-transition: -webkit-transform 0s 0.4s;transition: transform 0s 0.4s;-webkit-transition-timing-function:cubic-bezier(0.7,0,0.3,1);transition-timing-function: cubic-bezier(0.7,0,0.3,1);}
+.cruncy_option{ position:absolute; bottom:15px; width: 100%;    padding: 0 15px;}
 .cruncy_option select{ background: rgba(0,0,0,0); border: none; font-size: 14px; font-family: 'Brandon Grotesque'; cursor: pointer; line-height: 20px; font-weight:600; margin: 0px;  padding: 0px; color: #333333;}
 .cruncy_option select option {    color: #333333;}
 .slick-slider .slick-list {
@@ -347,17 +351,19 @@ transform: none !important;
 }
 ul.slick-dots {float: left;margin: 0px; height:100%;  overflow-x: scroll; padding: 0px;position: absolute;left: 0;top: 0; list-style:none;}
 .slick-arrow { display:none!important;}
-.slick-slider .slick-track, .slick-slider .slick-list{padding-left:20px; box-sizing:border-box;}
+.slick-slider .slick-track, .slick-slider .slick-list{padding-left:50px; box-sizing:border-box;}
 .slick-slide img{ width:100%;}
 
-
-
+.menu-list-box{     height: 100vh; background:rgba(255,255,255,0.9);   position: relative;    float: left;    margin: 0px;    padding: 0px;      transform: translateX(-100%);    transition: transform 0.3s ease-out 0s;
+    }
+.menu-list-box.toggle{transform: translateX(0%);}
 .header_left .close_menu img{ margin:0px;}
 .header_left .close_menu img:hover{ opacity:0.7;}
 .close_menu{ cursor: pointer; float: right;    margin: 0 0 0; padding:0px;}
 .close_menu .fa-times:hover{ color:#000; cursor:pointer;}
+.menu_list_cnt .menu-page-content{ float: left; margin: 20px 0 0; padding: 0px;  list-style: none;  width: 100%;}
 .menu_list_cnt .menu-content{ float: left; margin: 20px 0 0; padding: 0px;  list-style: none;  width: 100%;}
-.menu_list_cnt{ float:left; margin:0px; padding:20px; background:rgba(255,255,255,0.9); height:100vh;    width: 200px;}
+.menu_list_cnt{ float:left; margin:0px; padding:20px;   width: 200px; overflow:auto;  max-height:85vh;}
 .nav-side-menu .toggle-btn {margin: 10px 0 0;  padding: 0px; float: left;}
 .header_right img{margin:0;}
 .menu-list #menu-content{ margin:0px; padding:0px; list-style:none;}
@@ -390,9 +396,9 @@ z-index: 999;box-shadow: 0 2px 3px #ccc;width:180px; overflow:scroll;}
 .bestseller button.slick-next.slick-arrow {    right: 0;}
 .bestseller{ display:flex; width:100%; overflow:hidden; float:left; margin-bottom:50px;} 
 
-.title{    float: left;    width: 100%;    margin: 0 0 15px;    padding:0px 15px;}
+.title{ float: left;  width: 100%;  margin: 0 0 15px; padding:0px 15px;}
 .content{ margin-top:40px; }
-.see_all{ font-family: 'Brandon Grotesque';     text-decoration: none; float:right;display: flex; margin:0px; padding:0px; font-size:20px; color:#333; line-height:30px; font-weight:600;}
+.see_all{ font-family: 'Brandon Grotesque'; text-decoration: none; float:right;display: flex; margin:0px; padding:0px; font-size:20px; color:#333; line-height:30px; font-weight:600;}
 .see_all svg{ margin:0 0 0 10px;}
 .see_all:hover{ text-decoration:none; color:#000;}
 .title h2{ font-family: 'Brandon Grotesque'; float: left; margin: 0px; padding: 0px; font-size: 24px; font-weight:600;line-height: 30px;}
@@ -400,7 +406,7 @@ z-index: 999;box-shadow: 0 2px 3px #ccc;width:180px; overflow:scroll;}
 .slick-list.draggable{ padding:0px!important;}
 .pro_item a:hover{ text-decoration:none; color:#000; font-weight:bold;}
 .pro_item a{font-family: 'Brandon Grotesque'; margin:0 0 5px; padding:0px; font-size:18px; line-height:24px;    display: inline-block; color:#000; font-weight:400;}
-.p_price{    float: left; width:100%; font-weight:bold; font-size:16px; margin:0px; padding:0px; line-height:20px;}
+.p_price{  float: left; width:100%; font-weight:bold; font-size:16px; margin:0px; padding:0px; line-height:20px;}
 
 .color_varient{ width:100%; margin:0 0 10px; padding:0px; float:left; }
 .color_varient ul { margin:0px; padding:0px; display:flex; list-style:none;}
@@ -415,7 +421,7 @@ z-index: 999;box-shadow: 0 2px 3px #ccc;width:180px; overflow:scroll;}
 .pro_buy .quick_view:focus{    outline: none;}
 .pro_buy .quick_view:hover{ color:#000; cursor: pointer;}
 .pro_img img{ margin:0px; padding:0px; width:100%; }
-.pro_img {    width: 100%;    margin: 0 0 10px;    display: flex;    padding: 0px;    align-items: center;    text-align: center;    justify-content: center;}
+.pro_img {    width: 100%; margin: 0 0 10px;  display: flex;  padding: 0px; align-items: center;    text-align: center;    justify-content: center;}
 .slick-slide{ padding:0 10px;}
 
 
@@ -530,7 +536,7 @@ background-repeat: no-repeat;
 .frewidebox img{ margin:0px; padding:0px; display:inline-block;}
 
 
-.product_detail_cnt{ width:100%; margin:5px 0; padding:0 0 0 15px; float:left;}
+.product_detail_cnt{ width:100%; margin:5px 0; padding:0 0 0 15px; float:left; overflow:hidden;}
 .product_detail_cnt h3{ width:100%; margin:0px 0 10px; padding:0px; float:left;font-family: 'Brandon Grotesque';color: #000;font-size: 20px;line-height:30px;font-weight: bold;}
 .product_detail_cnt p{ width:100%; margin:0px 0 10px; padding:0px; float:left;font-family: 'Brandon Grotesque';color: #212121;font-size: 16px;line-height:20px;font-weight: normal;}
 
@@ -567,19 +573,21 @@ background-repeat: no-repeat;
 .active .plus{ display:none;}
 .app_banner_cnt .mob_img{ display:none;}
 .see_all svg,.see_all span{ float:left;} 
-
+.light_search_box form{ float: left; width: 100%; margin: 0px; padding: 0px;}   
+.form_cnt_box{ position: absolute; top: 100%;  background: #fff; width:100%; left: 0; margin:2px 0 0; padding:15px;}
+.form_cnt_box p{ text-align: left; margin:0px; padding:0px; font-size:14px; line-height:20px; font-weight:normal; color:#676767;} 
 .footer{ width:100%; margin:0px; padding:0px; float:left;}
 
 @media only screen and (max-width:500px) {
-.app_banner_text{    padding:55px 35px 0;}
-.col-3 {    flex: 0 0 50%!important;    max-width:50%!important;}
+.app_banner_text{  padding:55px 35px 0;}
+.col-3 { flex: 0 0 50%!important;    max-width:50%!important;}
 .addbuttonbox button{width: 100%;}
-.Product {    -webkit-box-flex: 0;    -ms-flex: 0 1 50%;  margin: 0;  flex:0 1 48%;  box-sizing: border-box;   padding: 0 15px;}
+.Product { -webkit-box-flex: 0;    -ms-flex: 0 1 50%;  margin: 0;  flex:0 1 48%;  box-sizing: border-box;   padding: 0 15px;}
 .app_banner_text h1{    font-size: 22px; line-height:24px; margin:0 0 10px;}
 .app_banner_text a{    font-size: 12px;  text-decoration: underline;  line-height: 20px;}
 .content .col-12{ padding:0px;}
 .title .see_all{display:none;}
-.title h2{    text-align: center;    width: 100%;}
+.title h2{  text-align: center;    width: 100%;}
 .over_story_cnt{padding: 30px 20px 10px;}
 .over_story_cnt h2{ font-weight:bold;  text-align: center;    width: 100%;}
 .over_story_cnt p{    font-size: 14px;    line-height: 20px;    color: #000;}
@@ -588,9 +596,13 @@ background-repeat: no-repeat;
 @media only screen and (max-width:980px) and (min-width:768px)  {
 .footer-title .social-icon-ft li{    margin-right: 10px;}
 .social-icon-ft li{    margin-right: 5px;}	
-.Product {    -webkit-box-flex: 0;    -ms-flex: 0 1 50%; margin: 0;   flex:0 1 20%;  box-sizing: border-box;   padding: 0 15px;}
+.Product {  -webkit-box-flex: 0;    -ms-flex: 0 1 50%; margin: 0;   flex:0 1 20%;  box-sizing: border-box;   padding: 0 15px;}
 }
 @media only screen and (max-width:767px) and (min-width:320px)  {
+	.cart_icon .cartCount{top: 7px;}
+	span.cartCount:after{left: -24px;}
+	.header_right > ul svg{ width:35px;}
+	.headder .header_right{padding-top: 5px; padding-left:0;}
 .slick-slider .slick-list { width: 100%; float: right;}	
 .dotsImage{    margin: 0 5px 10px;     max-height: 50px;     width: 50px;}
 ul.slick-dots{position: relative;}	
@@ -613,15 +625,14 @@ ul.slick-dots li{ display:inline-block;}
 .see_all{ display:none;}
 .light_search_box_cnt {padding: 0px;margin: 0px;position: fixed;z-index: 999;width: 100%;height: auto;background: rgba(221,221,221,0.6);top: 0;right: 0; box-sizing: border-box;height: 100vh;}
 .light_search_box svg.fa-search {    display: block;}
-.light_search_box input[type="text"]{    padding: 8px 10px 8px 40px;}
+.light_search_box input[type="text"]{ padding: 8px 10px 8px 40px;}
 .light_search_box .fa-search { position: absolute;    left: 20px;    top: 25px;    color: #ccc;    cursor: pointer;}
-.light_search_box .fa-search path{ fill:#ccc;}
 .product_detail_cnt{ margin: 5px 0 50px;}
 .frewidebox ul li{padding: 0 0;}
 .seeallcnt{ display:block;} 
 .nav-side-menu .toggle-btn {  margin: 12px 0 0;}
 .header_left img{  margin: 12px 0 0;}
-.morefrom { display:block!important;     margin-bottom: 50px;    float: left;    width: 100%; }
+.morefrom { display:block!important; margin-bottom: 50px; float: left; width: 100%; }
 .deskfooter{display:none;}
 .footer_mobile{display:block!important;}
 .text_cnt{ margin-bottom:0px;}
@@ -630,8 +641,8 @@ desk.footer{ background:#232323;}
 .filter_nav{ margin-bottom:50px;}
 .img_cnt{    height: auto;}
 .footer-title{ margin:0 0 20px; width:100%; float:left;} 
-
 }
+
 @media only screen and (max-width:767px) and (min-width:501px)  {
 .app_banner_text{padding: 50px 15px 0;}
 .col-3 {    flex: 0 0 50%!important;    max-width: 50%!important; float:left;}

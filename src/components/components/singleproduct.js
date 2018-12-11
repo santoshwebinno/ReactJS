@@ -26,14 +26,14 @@ class SimpleSlider extends React.Component {
     dots: true, 
     dotsClass: "slick-dots",
     customPaging: (i) => {
-      return (this.state && this.state.images) ? <a><img className="dotsImage" src={this.state.images[i].src}/></a> : <button className="sliderDots"></button>  
+      return (this.state && this.state.images) ? <img className="dotsImage" src={this.state.images[i].src} alt=""/>: <button className="sliderDots"></button>  
     },
      infinite: true,
      slidesToShow: 1, 
      slidesToScroll: 1,
      vertical: true, 
      verticalSwiping: true, 
-   responsive: [
+     responsive: [
        {
          breakpoint: 1024,
          settings: { 

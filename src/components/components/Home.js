@@ -6,6 +6,7 @@ import { LocalStorage } from '../../helpers/LocalStorage';
  
 import Story from './Story'; 
 import Banner from './banner';  
+ 
 
 class Index extends Component {
 
@@ -16,7 +17,7 @@ class Index extends Component {
   render() {
     return (
       <div className="App">
-        <Banner/>
+        <Banner/> 
          <Products
           bestProducts={this.props.bestProducts}
           artProducts={this.props.artProducts}

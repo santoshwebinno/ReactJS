@@ -1,15 +1,11 @@
 import React from 'react';
-import logo from '../../images/logo.png';
-import menu from '../../images/menu.png';
-import Cart from './../Cart';
-import cart_icon from '../../images/cart_icon.png';
-import seacrch_icon from '../../images/seacrch_icon.png';
-import Close from '../../images/close.png';
-import {Link} from "react-router-dom";
+import logo from '../../images/logo.png';  
+import {NavLink} from "react-router-dom";
 import client from '../../helpers/ShopifyClient';
 import { LocalStorage } from '../../helpers/LocalStorage';
-
-
+import Icon from "../../images/arrow";
+import Searchinput from './search'; 
+import {Link} from "react-router-dom"; 
 import Search from "../../images/search";
 import ShoppingBag from "../../images/ShoppingBag";
 import Menu from "../../images/menu";
@@ -24,11 +20,12 @@ class Header extends React.Component {
 	    isCartOpen: false,
       checkout: { lineItems: [] },
       products: [],
+	  inverted: true,
       shop: {},
 	    displayMenu: false,
       displaySearch: false
     };
-	
+	this.toggleInverted = this.toggleInverted.bind(this);
 	this.showSearch = this.showSearch.bind(this);
 	this.hideSearch = this.hideSearch.bind(this);
 	this.showDropdownMenu = this.showDropdownMenu.bind(this);
@@ -37,19 +34,22 @@ class Header extends React.Component {
 	 
   }
   
+  toggleInverted() {
+    this.setState({inverted: !this.state.inverted});
+  }
+  
   showDropdownMenu(event) {
     event.preventDefault();
-    this.setState({ displayMenu: true });
+	this.setState({inverted: true});
+    this.setState({ displayMenu: true }); 
   }
   
   hideDropdownMenu() {
-    this.setState({ displayMenu: false });
-
+    this.setState({ displayMenu: false }); 
   }
   
   hideSearch() {
-    this.setState({ displaySearch: false });
-
+    this.setState({ displaySearch: false }); 
   }
   showSearch(event) {
     this.setState({ displaySearch: true });
@@ -60,8 +60,8 @@ class Header extends React.Component {
     if(collections) {
       collect = collections.map((collection) => {
         return (
-          <li key={collection.id}>
-            <Link to={`/${collection.handle}`} >{collection.title}</Link>
+          <li key={collection.id} onClick={this.hideDropdownMenu}>
+            <NavLink exact activeClassName="current" to={`/${collection.handle}`} ><span>{collection.title}</span><Icon width={30} /></NavLink>
           </li>
         );
       });
@@ -72,11 +72,12 @@ class Header extends React.Component {
         <div className="row headder">
       <div className="col-4 header_left">
             <div className="nav-side-menu">
-          <div className="toggle-button" onClick={this.showDropdownMenu}><Menu width={60}  /></div>
+          <div className="toggle-button" onClick={this.showDropdownMenu}><Menu width={60}  /></div> 
           { this.state.displayMenu ? (
-          <div className="menu-list">
+          <div className="menu-list" >
+          <div className={this.state.inverted ? 'menu-list-box toggle' : 'menu-list-box'}>
                 <div className="menu_list_cnt">
-              <div className="close_menu" onClick={this.hideDropdownMenu}><Remove width={30}  /></div>
+				{/*<div className="close_menu" onClick={this.hideDropdownMenu}><Remove width={30}  /></div>*/}
               <ul className="menu-content">
                 {collect}
                   { /*  <li>
@@ -98,9 +99,9 @@ class Header extends React.Component {
                   <Link to="/Best Selling" >
                   All Products
                   </Link>
-                </li>
+                </li>*/ }
                   </ul>
-              <ul className="menu-content">
+              <ul className="menu-page-content">
                     <li>
                   <Link to="/AboutUs" >
                   About Us
@@ -115,8 +116,9 @@ class Header extends React.Component {
                   <Link to="/OurPolicies" >
                   Our Policies
                   </Link>
-                  </li> */ }
+                  </li> 
                   </ul>
+				  </div>
               <div className="cruncy_option">
                     <select>
                   <option>United States (USD) </option>
@@ -132,9 +134,9 @@ class Header extends React.Component {
           } </div>
           </div>
       <div className="col-4 header_center">
-            <Link to="/" exact={true} >
+            <NavLink to="/" exact={true} >
             <img src={logo} alt="" />
-            </Link>
+            </NavLink>
           </div>
       <div className="col-4 header_right">
             <ul>
@@ -143,7 +145,7 @@ class Header extends React.Component {
                 { this.state.displaySearch ? (
                 <div className="light_search_box_cnt">
               <div className="light_search_box"><Search width={30} />
-                    <input type="text" placeholder="What can we help you find?" />
+			  <Searchinput />
                     <div className="close_search" onClick={this.hideSearch}><Remove width={20}  /></div>
                   </div>
             </div>
